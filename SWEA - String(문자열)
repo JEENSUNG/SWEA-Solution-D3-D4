@@ -1,0 +1,21 @@
+package com.core.hello;
+import java.util.*;
+class Main{
+    static int n, k;
+    static int[][] arr;
+    static int MAX = Integer.MIN_VALUE;
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        for (int test_case = 1; test_case <= 10; test_case++) {
+            int test = scan.nextInt();
+            String st = scan.next();
+            String str = scan.next();
+            int answer = 0;
+            for(int i = 0; i < str.length() - 1; i++){
+                if(str.startsWith(st, i))
+                    answer++;
+            }
+            System.out.println("#" + test_case + " " + answer);
+        }
+    }
+}
