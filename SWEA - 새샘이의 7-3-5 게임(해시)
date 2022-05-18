@@ -1,0 +1,37 @@
+package com.core.hello;
+import java.util.*;
+class Main{
+    static int[] arr;
+    static boolean[] visit;
+    static HashMap<Integer,Integer> hashMap;
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int test = scan.nextInt();
+        for (int test_case = 1; test_case <= test; test_case++) {
+            arr = new int[7];
+            visit = new boolean[7];
+            hashMap = new HashMap<>();
+            for (int i = 0; i < 7; i++)
+                arr[i] = scan.nextInt();
+            dfs(0, 0);
+            ArrayList<Integer> list = new ArrayList<>(hashMap.keySet());
+            list.sort(Comparator.comparing(o -> o));
+            System.out.println("#" + test_case + " " + list.get(list.size() - 5));
+        }
+    }
+    static void dfs(int count, int sum){
+        if(count == 3) {
+            if(!hashMap.containsKey(sum)){
+                hashMap.put(sum, 1);
+            }
+            return;
+        }
+        for(int i = 0; i < 7; i++){
+            if(!visit[i]){
+                visit[i] = true;
+                dfs(count + 1, sum + arr[i]);
+                visit[i] = false;
+            }
+        }
+    }
+}
