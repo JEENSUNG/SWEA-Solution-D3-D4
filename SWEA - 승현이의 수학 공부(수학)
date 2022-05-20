@@ -1,0 +1,25 @@
+
+import java.util.*;
+
+class Solution{
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int test = scan.nextInt();
+        for (int test_case = 1; test_case <= test; test_case++) {
+            int n = scan.nextInt();
+            String m = scan.next();
+            int size = m.length();
+            int index = 0;
+            long sum = 0;
+            if(n != 2) {
+                while (index < size) {
+                    sum += m.charAt(index) - '0';
+                    index++;
+                }
+                System.out.println("#" + test_case + " " + sum % (n - 1));
+            }
+            else
+                System.out.println("#" + test_case + " " + 0);
+        }
+    }
+}
