@@ -1,0 +1,75 @@
+import java.util.*;
+
+class Solution{
+    static class Point{
+        int x;
+        int y;
+        Point(int x, int y){
+            this.x = x;
+            this.y = y;
+        }
+    }
+    static int n, m;
+    static int white = 0;
+    static int black = 0;
+    static int[][] arr;
+    static int[][] dir = {{-1, 0}, {1, 0}, {0, 1}, {0, -1}, {1, -1}, {1, 1}, {-1, -1}, {-1, 1}};
+    static Queue<Point> queue;
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int test = scan.nextInt();
+        for(int test_case = 1; test_case <= test; test_case++) {
+            n = scan.nextInt();
+            m = scan.nextInt();
+            white = 0;
+            black = 0;
+            arr = new int[n + 1][n + 1];
+            arr[n / 2][(n / 2) + 1] = arr[(n / 2) + 1][n / 2] = 1;
+            white += 2;
+            arr[n / 2][n / 2] = arr[(n / 2) + 1][(n / 2) + 1] = 2;
+            black += 2;
+            while (m-- > 0) {
+                int x = scan.nextInt();
+                int y = scan.nextInt();
+                int z = scan.nextInt();
+                bfs(y,x,z);
+            }
+            System.out.println("#" + test_case + " " + black + " " + white);
+        }
+    }
+    static void bfs(int x, int y, int z){
+        for(int i = 0; i < 8; i++){
+            queue = new LinkedList<>();
+            int nx = x + dir[i][0];
+            int ny = y + dir[i][1];
+            while(true){
+                if(nx <= 0 || ny <= 0 || nx > n || ny > n)
+                    break;
+                if(arr[nx][ny] == z){
+                    while (!queue.isEmpty()) {
+                        Point now = queue.poll();
+                        arr[now.x][now.y] = z;
+                        if(z == 1){
+                            black++;
+                            white--;
+                        }else{
+                            black--;
+                            white++;
+                        }
+                    }
+                    break;
+                }else if(arr[nx][ny] != 0)
+                    queue.offer(new Point(nx, ny));
+                else
+                    break;
+                nx += dir[i][0];
+                ny += dir[i][1];
+            }
+        }
+        arr[x][y] = z;
+        if(z == 1)
+            black++;
+        else
+            white++;
+    }
+}
