@@ -1,0 +1,26 @@
+package com.core.hello;
+import java.util.*;
+class Main{
+    static int n;
+    static int answer;
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int test = scan.nextInt();
+        for(int test_case = 1; test_case <= test; test_case++){
+            n = scan.nextInt();
+            answer = 0;
+            for(int i = 1; i <= n; i++)
+                dfs(i, i);
+            System.out.println("#" + test_case + " " + answer);
+        }
+    }
+    static void dfs(int start, int sum){
+        if(sum > n){
+            return;
+        }else if(sum == n){
+            answer++;
+            return;
+        }
+        dfs(start + 1, sum + start + 1);
+    }
+}
