@@ -1,0 +1,20 @@
+package com.core.hello;
+import java.util.*;
+class Main{
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int test = scan.nextInt();
+        for(int test_case = 1; test_case <= test; test_case++){
+            int n = scan.nextInt();
+            int u = scan.nextInt();
+            int x = scan.nextInt();
+            if(x < n){
+                System.out.println("#" + test_case + " " + (n-x));
+            }else if(x <= u){
+                System.out.println("#" + test_case + " " + 0);
+            }else {
+                System.out.println("#" + test_case + " " + -1);
+            }
+        }
+    }
+}
