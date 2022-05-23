@@ -1,0 +1,75 @@
+package com.core.hello;
+import java.awt.*;
+import java.util.*;
+class Point{
+    int x;
+    int y;
+    Point(int x, int y){
+        this.x = x;
+        this.y = y;
+    }
+}
+class Main {
+    static int n;
+    static int[][] arr;
+    static boolean isOk;
+    static boolean[][] visit;
+    static Queue<Point> queue;
+    static int[][] dir = {{-1, 0}, {1, 0}, {0, 1}, {0, -1}, {-1, -1}, {-1, 1}, {1, 1}, {1, -1}};
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int test = scan.nextInt();
+        for (int test_case = 1; test_case <= test; test_case++) {
+            queue = new LinkedList<>();
+            n = scan.nextInt();
+            arr = new int[n][n];
+            isOk = false;
+            for(int i = 0; i < n; i++) {
+                String str = scan.next();
+                for (int j = 0; j < n; j++) {
+                    if(str.charAt(j) == '.')
+                        arr[i][j] = 0;
+                    else {
+                        arr[i][j] = 1;
+                        queue.offer(new Point(i, j));
+                    }
+                }
+            }
+            while (!queue.isEmpty()) {
+                Point now = queue.poll();
+                if(isOk)
+                    break;
+                for(int i = 0; i < 8; i++){
+                    if(isOk)
+                        break;
+                    int nx = now.x + dir[i][0];
+                    int ny = now.y + dir[i][1];
+                    int cnt = 1;
+                    if(nx < 0 || ny < 0 || nx >= n || ny >= n)
+                        continue;
+                    if(arr[nx][ny] == 1){
+                        while(true){
+                            if(cnt >= 5) {
+                                isOk = true;
+                                break;
+                            }
+                            if(nx < 0 || ny < 0 || nx >= n || ny >= n)
+                                break;
+                            if(arr[nx][ny] == 0)
+                                break;
+                            if(arr[nx][ny] == 1){
+                                cnt++;
+                            }
+                            nx += dir[i][0];
+                            ny += dir[i][1];
+                        }
+                    }
+                }
+            }
+            if(isOk)
+                System.out.println("#" + test_case + " " + "YES");
+            else
+                System.out.println("#" + test_case + " " + "NO");
+        }
+    }
+}
