@@ -1,0 +1,84 @@
+package com.core.hello;
+import java.util.*;
+class Point{
+    int price;
+    int kg;
+    Point(int price, int kg){
+        this.price = price;
+        this.kg = kg;
+    }
+}
+class Main{
+    static int n;
+    static int m;
+    static boolean[] visit;
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int test = scan.nextInt();
+        for(int test_case = 1; test_case <= test; test_case++){
+            int answer = 0;
+            Queue<Integer> q = new LinkedList<>();
+            ArrayList<Integer> car = new ArrayList<>();
+            n = scan.nextInt();
+            m = scan.nextInt();
+            int[] price = new int[n];
+            visit = new boolean[n];
+            for(int i = 0; i < n; i++)
+                price[i] = scan.nextInt();
+            for(int i = 0; i < m; i++)
+                car.add(scan.nextInt());
+            Queue<Point> queue = new LinkedList<>();
+            int size = 2 * m;
+            while(size--> 0){
+                int x = scan.nextInt();
+                if(x > 0){
+                    if (check()) {
+                        q.offer(x);
+                    }
+                    else {
+                        int t = 0;
+                        for(int i = 0; i < n; i++){
+                            if(!visit[i]) {
+                                t = i;
+                                visit[i] = true;
+                                break;
+                            }
+                        }
+                        answer += car.get(x - 1) * price[t];
+                        queue.offer(new Point(t, x));
+                    }
+                }else{
+                    while(!queue.isEmpty()){
+                        Point now = queue.poll();
+                        if(now.kg == (x * -1)){
+                            visit[now.price] = false;
+                            break;
+                        }else{
+                            queue.offer(new Point(now.price, now.kg));
+                        }
+                    }if(!q.isEmpty()){
+                        int t = q.poll();
+                        int nt = 0;
+                        for(int i = 0; i < n; i++){
+                            if(!visit[i]){
+                                nt = i;
+                                visit[i] = true;
+                                break;
+                            }
+                        }
+                        answer += car.get(t - 1) * price[nt];
+                        queue.offer(new Point(nt, t));
+                    }
+                }
+            }
+            System.out.println("#" + test_case + " " + answer);
+        }
+    }
+    static boolean check(){
+        for(int i = 0; i < n; i++){
+            if(!visit[i])
+                return false;
+        }
+        return true;
+    }
+}
