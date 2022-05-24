@@ -1,0 +1,24 @@
+import java.util.*;
+class Solution{
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		int test = scan.nextInt();
+		for(int test_case = 1; test_case <= test; test_case++) {
+			int n = scan.nextInt();
+			int q = scan.nextInt();
+			int[] arr = new int[n];
+			for(int i = 0; i < q; i++) {
+				int t = i + 1;
+				int start = scan.nextInt() - 1;
+				int end = scan.nextInt() - 1;
+				for(int j = start; j <= end; j++) {
+					arr[j] = t;
+				}
+			}
+			System.out.print("#" + test_case + " ");
+			for(int i = 0; i < n; i++)
+				System.out.print(arr[i] + " ");
+			System.out.println();
+		}
+	}
+}
