@@ -1,0 +1,19 @@
+import java.util.*;
+class Solution{
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		int test = scan.nextInt();
+		for(int test_case = 1; test_case <= test; test_case++) {
+			int d = scan.nextInt();
+			int h = scan.nextInt();
+			int m = scan.nextInt();
+			int sum;
+			sum = d * 24 * 60 + h * 60 + m;
+			int temp = 11 * 24 * 60 + 11 * 60 + 11;
+			if(sum >= temp)
+				System.out.println("#" + test_case + " " + (sum - temp));
+			else
+				System.out.println("#" + test_case + " " + -1);
+		}
+	}
+}
