@@ -1,0 +1,30 @@
+import java.util.*;
+class Solution{
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		int test = scan.nextInt();
+		for(int test_case = 1; test_case <= test; test_case++) {
+			int n = scan.nextInt();
+			int[] arr = new int[n];
+			int max = -1;
+			for(int i = 0; i < n; i++)
+				arr[i] = scan.nextInt();
+			for(int i = 0; i < n; i++) {
+				for(int j = i + 1; j < n; j++) {
+					int value = arr[i] * arr[j];
+					String str = String.valueOf(value);
+					int flag = 0;
+					for(int k = 1; k < str.length(); k++) {
+						if(str.charAt(k - 1)>str.charAt(k)) {
+							flag = 1;
+							break;
+						}
+					}
+					if(flag == 0)
+						max = Math.max(max,  value);
+				}
+			}
+			System.out.println("#" + test_case + " " + max);
+		}
+	}
+}
