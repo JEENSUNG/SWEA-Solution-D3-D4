@@ -1,0 +1,16 @@
+import java.util.*;
+class Solution{
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		int test = scan.nextInt();
+		for(int test_case = 1; test_case <= test; test_case++) {
+			long n = scan.nextLong();
+			long left = 1;
+			long right = 1;
+			//일반항 : 4n - 2, 4n + 2
+			left += 2*(n-1)*(n-1);
+			right += 2*(n-1)*(n-1) + 4 * (n-1);
+			System.out.println("#" + test_case + " " + left + " " + right);
+		}
+	}
+}
