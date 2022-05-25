@@ -1,0 +1,25 @@
+import java.util.*;
+class Solution{
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		int test = scan.nextInt();
+		for(int test_case = 1; test_case <= test; test_case++) {
+			int a = scan.nextInt();
+			int b = scan.nextInt();
+			int c = scan.nextInt();
+			ArrayList<Integer> list = new ArrayList<>();
+			if(a == b && b == c)
+				System.out.println("#" + test_case + " " + a);
+			else {
+				list.add(a);
+				list.add(b);
+				list.add(c);
+				Collections.sort(list);
+				if(list.get(0) == list.get(1))
+					System.out.println("#" + test_case + " " + list.get(2));
+				else
+					System.out.println("#" + test_case + " " + list.get(0));
+			}
+		}
+	}
+}
