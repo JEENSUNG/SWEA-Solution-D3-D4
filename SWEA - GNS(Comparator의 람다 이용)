@@ -1,0 +1,55 @@
+import java.util.*;
+class Node{
+	String str;
+	int x;
+	Node(String str, int x){
+		this.str = str;
+		this.x = x;
+	}
+}
+class Solution{
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		int test = scan.nextInt();
+		for(int test_case = 1; test_case <= test; test_case++) {
+			String str = scan.next();
+			int n = scan.nextInt();
+			ArrayList<Node> list = new ArrayList<>(); 
+			for(int i = 0; i < n; i++) {
+				String s = scan.next();
+				if(s.equals("ZRO")) 
+					list.add(new Node("ZRO", 0));
+				else if(s.equals("ONE"))
+					list.add(new Node("ONE", 1));
+				else if(s.equals("TWO"))
+					list.add(new Node("TWO", 2));
+				else if(s.equals("THR"))
+					list.add(new Node("THR", 3));
+				else if(s.equals("FOR"))
+					list.add(new Node("FOR", 4));
+				else if(s.equals("FIV"))
+					list.add(new Node("FIV", 5));
+				else if(s.equals("SIX"))
+					list.add(new Node("SIX", 6));
+				else if(s.equals("SVN"))
+					list.add(new Node("SVN", 7));
+				else if(s.equals("EGT"))
+					list.add(new Node("EGT", 8));
+				else if(s.equals("NIN"))
+					list.add(new Node("NIN", 9));
+			}
+			Collections.sort(list, new Comparator<Node>() {
+				@Override
+				public int compare(Node o1, Node o2) {
+					// TODO Auto-generated method stub
+					return o1.x - o2.x;
+				}
+			});
+			System.out.print("#" + test_case + " ");
+			for(int i = 0; i < list.size(); i++) {
+				Node now = list.get(i);
+				System.out.print(now.str + " ");
+			}
+		}
+	}
+}
