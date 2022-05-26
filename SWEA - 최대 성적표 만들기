@@ -1,0 +1,23 @@
+import java.util.*;
+class Solution{
+	static int n, k;
+	static int[] arr;
+	static boolean[] visit;
+	static int answer;
+	public static void main(String[] args) throws NullPointerException{
+		Scanner scan = new Scanner(System.in);
+		int test = scan.nextInt();
+		for(int test_case = 1; test_case <= test; test_case++) {
+			n = scan.nextInt();
+			k = scan.nextInt();
+			arr = new int[n];
+			for(int i = 0; i < n; i++)
+				arr[i] = scan.nextInt();
+			Arrays.sort(arr);
+			answer = 0;
+			for(int i = n - 1; i >= n - k; i--)
+				answer += arr[i];
+			System.out.println("#" + test_case + " " + answer);
+		}
+	}
+}
