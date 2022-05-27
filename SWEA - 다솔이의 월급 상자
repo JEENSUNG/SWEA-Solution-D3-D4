@@ -1,0 +1,17 @@
+import java.util.*;
+class Solution{
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		int test = scan.nextInt();
+		for(int test_case = 1; test_case <= test; test_case++) {
+			int n = scan.nextInt();
+			double answer = 0;
+			for(int i = 0; i < n; i++) {
+				double p = scan.nextDouble();
+				int money = scan.nextInt();
+				answer += p * money;
+			}
+			System.out.println("#" + test_case + " " + String.format("%.6f",answer));
+		}
+	}
+}
