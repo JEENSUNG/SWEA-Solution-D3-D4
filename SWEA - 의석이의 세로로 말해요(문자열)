@@ -1,0 +1,25 @@
+import java.util.*;
+class Solution{
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		int test = scan.nextInt();
+		for(int test_case = 1; test_case <= test; test_case++) {
+			String str = "";
+			char[][] arr = new char[15][15];
+			for(int i = 0; i < 5; i++) {
+				String x = scan.next();
+				for(int j = 0; j < x.length(); j++) {
+					arr[i][j] = x.charAt(j);
+				}
+			}
+			for(int i = 0; i < 15; i++) {
+				for(int j = 0; j < 5; j++) {
+					if(arr[j][i] == 0)
+						continue;
+					str += arr[j][i];
+				}
+			}
+			System.out.println("#" + test_case + " " + str);
+		}
+	}
+}
