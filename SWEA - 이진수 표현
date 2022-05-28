@@ -1,0 +1,23 @@
+import java.util.*;
+class Solution{
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		int test = scan.nextInt();
+		for(int test_case = 1; test_case <= test; test_case++) {
+			int n = scan.nextInt();
+			int m = scan.nextInt();
+			boolean isOk = true;
+			while(n--> 0) {
+				if(m % 2 == 0) {
+					isOk = false;
+					break;
+				}
+				m = m / 2;
+			}
+			if(isOk)
+				System.out.println("#" + test_case + " " + "ON");
+			else
+				System.out.println("#" + test_case + " " + "OFF");
+		}
+	}
+}
