@@ -1,0 +1,65 @@
+import java.awt.Point;
+import java.util.*;
+class Solution{
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		int test = scan.nextInt();
+		for(int test_case = 1; test_case <= test; test_case++) {
+			int n = scan.nextInt();
+			int[][] arr = new int[n][n];
+			boolean[][] visit = new boolean[n + 1][n + 1];
+			int temp = 1;
+			int dir = 0;
+			int max = n * n;
+			int nx = 0; int ny = 0;
+			arr[nx][ny] = temp;
+			visit[0][0] = true;
+			while(temp < max) {
+				if(dir == 0) {
+					if(visit[nx][ny + 1] || ny + 1 == n) {
+						dir = 1;
+					}else {
+						ny++;
+						temp++;
+						arr[nx][ny] = temp;
+						visit[nx][ny] = true;
+					}
+				}else if(dir == 1) {
+					if(visit[nx + 1][ny] || nx + 1 == n) {
+						dir = 2;
+					}else {
+						nx++;
+						temp++;
+						arr[nx][ny] = temp;
+						visit[nx][ny] = true;
+					}
+				}else if(dir == 2) {
+					if(ny - 1 == -1 || visit[nx][ny - 1]) {
+						dir = 3;
+					}else {
+						ny--;
+						temp++;
+						arr[nx][ny] = temp;
+						visit[nx][ny] = true;
+					}
+				}else if(dir == 3){
+					if(visit[nx - 1][ny]) {
+						dir = 0;
+					}else {
+						nx--;
+						temp++;
+						arr[nx][ny] = temp;
+						visit[nx][ny] = true;
+					}
+				}
+			}
+			System.out.println("#" + test_case);
+			for(int i = 0; i < n; i++) {
+				for(int j = 0; j < n; j++) {
+					System.out.print(arr[i][j] + " ");
+				}
+				System.out.println();
+			}
+		}
+	}
+}
